@@ -2,17 +2,66 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Play } from 'lucide-react';
 import ProjectModal from './ProjectModal';
 
 const categories = ['All', 'Video Reels', 'Brand Design', 'Web Apps', 'Programming'];
 
 const projects = [
-  { id: 1, title: 'Cyberpunk Reel', category: 'Video Reels', image: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=800', color: 'cyan' },
-  { id: 2, title: 'Neo-Bank UI', category: 'Web Apps', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800', color: 'blue' },
-  { id: 3, title: 'Quantum Brand', category: 'Brand Design', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800', color: 'magenta' },
-  { id: 4, title: 'AI Engine', category: 'Programming', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', color: 'green' },
-  { id: 5, title: 'Motion Graphics', category: 'Video Reels', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800', color: 'cyan' },
-  { id: 6, title: 'E-Commerce 3.0', category: 'Web Apps', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', color: 'blue' },
+  { 
+    id: 1, 
+    title: 'Cyberpunk Reel', 
+    category: 'Video Reels', 
+    image: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with your video link
+    description: 'A high-energy motion graphics reel exploring futuristic aesthetics and glitch effects.',
+    tech: 'After Effects, Premiere Pro'
+  },
+  { 
+    id: 2, 
+    title: 'Neo-Bank UI', 
+    category: 'Web Apps', 
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: '', // Leave empty if no video
+    description: 'A minimalist banking dashboard with real-time data visualization and glassmorphism.',
+    tech: 'React, Tailwind, Recharts'
+  },
+  { 
+    id: 3, 
+    title: 'Quantum Brand', 
+    category: 'Brand Design', 
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: '',
+    description: 'Complete brand identity for a quantum computing startup, focusing on abstract geometry.',
+    tech: 'Illustrator, Figma'
+  },
+  { 
+    id: 4, 
+    title: 'AI Engine', 
+    category: 'Programming', 
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: '',
+    description: 'A distributed neural network architecture designed for low-latency edge computing.',
+    tech: 'Python, TensorFlow, Rust'
+  },
+  { 
+    id: 5, 
+    title: 'Motion Graphics', 
+    category: 'Video Reels', 
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    description: 'Experimental 3D animations focusing on light refraction and liquid physics.',
+    tech: 'Cinema 4D, Octane Render'
+  },
+  { 
+    id: 6, 
+    title: 'E-Commerce 3.0', 
+    category: 'Web Apps', 
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', 
+    videoUrl: '',
+    description: 'Next-generation shopping experience with AR product previews and instant checkout.',
+    tech: 'Next.js, Three.js, Stripe'
+  },
 ];
 
 const Portfolio = () => {
@@ -73,7 +122,7 @@ const Portfolio = () => {
                     className="overflow-hidden"
                   >
                     <p className="text-gray-400 text-sm mt-4 line-clamp-2">
-                      Exploring the boundaries of digital interaction through minimalist design.
+                      {project.description}
                     </p>
                   </motion.div>
                 </div>
