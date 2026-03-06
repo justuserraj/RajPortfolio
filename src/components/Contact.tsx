@@ -51,9 +51,9 @@ const Contact = () => {
 
           <div className="flex flex-col justify-center gap-6">
             {[
-              { icon: Instagram, label: 'Instagram', value: '@pratikraj.dev', color: 'text-pink-500' },
+              { icon: Instagram, label: 'Instagram', value: '@userpratikraj', color: 'text-pink-500' },
               { icon: Mail, label: 'Email', value: 'hello@pratikraj.com', color: 'text-cyan-500' },
-              { icon: MessageSquare, label: 'WhatsApp', value: '+91 98765 43210', color: 'text-green-500' },
+              { icon: MessageSquare, label: 'WhatsApp', value: '+91 8271757978', color: 'text-green-500' },
             ].map((social, i) => (
               <motion.a
                 key={social.label}
