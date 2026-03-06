@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ProjectModal from './ProjectModal';
 
 const categories = ['All', 'Video Reels', 'Brand Design', 'Web Apps', 'Programming'];
 
@@ -10,17 +11,20 @@ const projects = [
   { id: 2, title: 'Neo-Bank UI', category: 'Web Apps', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800', color: 'blue' },
   { id: 3, title: 'Quantum Brand', category: 'Brand Design', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800', color: 'magenta' },
   { id: 4, title: 'AI Engine', category: 'Programming', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', color: 'green' },
+  { id: 5, title: 'Motion Graphics', category: 'Video Reels', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800', color: 'cyan' },
+  { id: 6, title: 'E-Commerce 3.0', category: 'Web Apps', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', color: 'blue' },
 ];
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   const filteredProjects = activeCategory === 'All' 
     ? projects 
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32 px-6" id="work">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           {categories.map((cat) => (
@@ -40,7 +44,7 @@ const Portfolio = () => {
 
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
@@ -50,26 +54,44 @@ const Portfolio = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                whileHover={{ y: -5 }}
-                className="group relative aspect-video rounded-3xl overflow-hidden glass-panel"
+                whileHover={{ y: -10 }}
+                onClick={() => setSelectedProject(project)}
+                className="group relative aspect-[4/5] rounded-3xl overflow-hidden glass-panel cursor-pointer"
               >
                 <img 
                   src={project.image} 
                   alt={project.title}
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
                   <span className="text-cyan-400 text-xs font-mono mb-2 uppercase tracking-widest">{project.category}</span>
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
+                  <h3 className="text-2xl font-bold group-hover:text-cyan-400 transition-colors">{project.title}</h3>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    whileHover={{ opacity: 1, height: 'auto' }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-gray-400 text-sm mt-4 line-clamp-2">
+                      Exploring the boundaries of digital interaction through minimalist design.
+                    </p>
+                  </motion.div>
                 </div>
                 
-                {/* Hidden Complexity: Interactive Tilt Effect (Simulated with CSS) */}
-                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-tr from-cyan-500/10 to-transparent" />
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Play size={20} className="text-white" />
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 };
