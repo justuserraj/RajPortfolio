@@ -10,7 +10,7 @@ import Contact from '@/components/Contact';
 import CursorTrail from '@/components/CursorTrail';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import MoodSwitcher from '@/components/MoodSwitcher';
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import { MadeWithVizoxStudio } from "@/components/made-with-vizoxstudio";
 
 const Index = () => {
   const { scrollYProgress } = useScroll();
@@ -79,7 +79,7 @@ const Index = () => {
               <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">TWITTER</a>
             </div>
           </div>
-          <MadeWithDyad />
+          <MadeWithVizoxStudio />
         </footer>
       </div>
     </main>
