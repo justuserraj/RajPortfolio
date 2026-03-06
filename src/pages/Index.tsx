@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import Hero from '@/components/Hero';
 import Skills from '@/components/Skills';
+import Services from '@/components/Services';
 import Portfolio from '@/components/Portfolio';
+import Experience from '@/components/Experience';
 import Programming from '@/components/Programming';
 import Contact from '@/components/Contact';
 import CursorTrail from '@/components/CursorTrail';
@@ -91,7 +93,9 @@ const Index = () => {
       <div className="relative z-10">
         <Hero />
         <Skills />
+        <Services />
         <Portfolio />
+        <Experience />
         <Programming />
         <Contact />
         
