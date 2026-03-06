@@ -72,7 +72,7 @@ const Index = () => {
         
         <footer className="py-12 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-gray-500 text-sm font-mono">© 2024 PRATIK RAJ. ALL RIGHTS RESERVED.</p>
+            <p className="text-gray-500 text-sm font-mono">© 2026 PRATIK RAJ. ALL RIGHTS RESERVED.</p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">GITHUB</a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">LINKEDIN</a>
