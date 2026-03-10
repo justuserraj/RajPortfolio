@@ -1,90 +1,116 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Skills from '@/components/Skills';
-import Services from '@/components/Services';
-import Portfolio from '@/components/Portfolio';
-import Experience from '@/components/Experience';
-import Programming from '@/components/Programming';
-import Contact from '@/components/Contact';
-import CursorTrail from '@/components/CursorTrail';
-import BackgroundEffects from '@/components/BackgroundEffects';
-import MoodSwitcher from '@/components/MoodSwitcher';
-import AmbientAudio from '@/components/AmbientAudio';
-import PortalTransition from '@/components/PortalTransition';
-import { MadeWithVizoxStudio } from "@/components/made-with-vizoxstudio";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
-const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+const navLinks = [
+  { name: 'Work', href: '#work' },
+  { name: 'Services', href: '#services' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' },
+];
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <main className="relative bg-[#0a0a0a] min-h-screen selection:bg-cyan-500/30">
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div 
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[3000] bg-black flex items-center justify-center"
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-[1000] flex justify-center p-4 md:p-6 pointer-events-none">
+        <motion.div
+          initial={false}
+          animate={{
+            width: isScrolled ? 'auto' : '100%',
+            backgroundColor: isScrolled ? 'rgba(74, 7, 7, 0.8)' : 'rgba(0, 0, 0, 0)',
+            paddingLeft: isScrolled ? '2rem' : '1rem',
+            paddingRight: isScrolled ? '2rem' : '1rem',
+            paddingTop: isScrolled ? '0.75rem' : '1rem',
+            paddingBottom: isScrolled ? '0.75rem' : '1rem',
+            borderRadius: isScrolled ? '9999px' : '0px',
+            boxShadow: isScrolled ? '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none',
+          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className={`
+            pointer-events-auto flex items-center justify-between max-w-7xl w-full
+            backdrop-blur-xl border border-transparent
+            ${isScrolled ? 'border-white/10' : ''}
+          `}
+        >
+          {/* Logo */}
+          <div className="flex items-center">
+            <span className="font-serif text-2xl font-bold tracking-tighter text-white">
+              PR<span className="text-[#4A0707] drop-shadow-[0_0_8px_rgba(74,7,7,0.8)]">.</span>
+            </span>
+          </div>
+
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300 hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden p-2 text-white hover:text-gray-300 transition-colors"
           >
-            <motion.div 
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-2xl font-black tracking-[0.5em] text-cyan-500"
+            <Menu size={24} />
+          </button>
+        </motion.div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[2000] bg-[#4A0707]/95 backdrop-blur-2xl flex flex-col items-center justify-center"
+          >
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-8 right-8 p-4 text-white hover:rotate-90 transition-transform duration-300"
             >
-              INITIALIZING...
-            </motion.div>
+              <X size={32} />
+            </button>
+
+            <div className="flex flex-col items-center gap-12">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="font-sans text-2xl font-black uppercase tracking-[0.4em] text-white hover:text-gray-400 transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <PortalTransition />
-      <CursorTrail />
-      <BackgroundEffects />
-      <MoodSwitcher />
-      <AmbientAudio />
-      <Navbar />
-      
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-cyan-500 origin-left z-[1000]"
-        style={{ scaleX }}
-      />
-
-      <div className="relative z-10">
-        <Hero />
-        <div id="services"><Services /></div>
-        <Skills />
-        <div id="work"><Portfolio /></div>
-        <div id="experience"><Experience /></div>
-        <Programming />
-        <div id="contact"><Contact /></div>
-        
-        <footer className="py-12 border-t border-white/5">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-gray-500 text-sm font-mono">© 2026 PRATIK RAJ. ALL RIGHTS RESERVED.</p>
-            <div className="flex gap-6">
-              <a href="https://github.com" target="_blank" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">GITHUB</a>
-              <a href="https://linkedin.com" target="_blank" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">LINKEDIN</a>
-              <a href="https://twitter.com" target="_blank" className="text-gray-500 hover:text-white transition-colors text-sm font-mono">TWITTER</a>
-            </div>
-          </div>
-          <MadeWithVizoxStudio />
-        </footer>
-      </div>
-    </main>
+    </>
   );
 };
 
-export default Index;
+export default Navbar;
