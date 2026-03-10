@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Skills from '@/components/Skills';
 import Services from '@/components/Services';
@@ -30,21 +31,6 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Easter Egg: Jarvis Trigger
-  useEffect(() => {
-    let keys = '';
-    const handleKeyDown = (e: KeyboardEvent) => {
-      keys += e.key.toLowerCase();
-      if (keys.includes('jarvis')) {
-        alert('System Override: Welcome, Pratik.');
-        keys = '';
-      }
-      if (keys.length > 10) keys = keys.slice(1);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
     <main className="relative bg-[#0a0a0a] min-h-screen selection:bg-cyan-500/30">
       <AnimatePresence>
@@ -69,35 +55,21 @@ const Index = () => {
       <BackgroundEffects />
       <MoodSwitcher />
       <AmbientAudio />
+      <Navbar />
       
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-cyan-500 origin-left z-[1000]"
         style={{ scaleX }}
       />
 
-      <nav className="fixed top-0 left-0 right-0 p-8 flex justify-between items-center z-50 mix-blend-difference">
-        <motion.span 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-xl font-black tracking-tighter cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          PR.
-        </motion.span>
-        <div className="flex gap-8 text-xs font-mono tracking-widest uppercase text-gray-400">
-          <a href="#work" className="hover:text-white transition-colors">Work</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-        </div>
-      </nav>
-
       <div className="relative z-10">
         <Hero />
+        <div id="services"><Services /></div>
         <Skills />
-        <Services />
-        <Portfolio />
-        <Experience />
+        <div id="work"><Portfolio /></div>
+        <div id="experience"><Experience /></div>
         <Programming />
-        <Contact />
+        <div id="contact"><Contact /></div>
         
         <footer className="py-12 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
