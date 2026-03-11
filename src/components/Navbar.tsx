@@ -30,13 +30,13 @@ const Navbar = () => {
           initial={false}
           animate={{
             width: isScrolled ? 'auto' : '100%',
-            backgroundColor: isScrolled ? 'rgba(74, 7, 7, 0.8)' : 'rgba(0, 0, 0, 0)',
+            backgroundColor: isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'rgba(0, 0, 0, 0)',
             paddingLeft: isScrolled ? '2rem' : '1rem',
             paddingRight: isScrolled ? '2rem' : '1rem',
             paddingTop: isScrolled ? '0.75rem' : '1rem',
             paddingBottom: isScrolled ? '0.75rem' : '1rem',
             borderRadius: isScrolled ? '9999px' : '0px',
-            boxShadow: isScrolled ? '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' : 'none',
+            boxShadow: isScrolled ? '0 20px 25px -5px rgba(0, 0, 0, 0.3)' : 'none',
           }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={`
@@ -48,7 +48,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <span className="font-serif text-2xl font-bold tracking-tighter text-white">
-              AR<span className="text-[#4A0707] drop-shadow-[0_0_8px_rgba(74,7,7,0.8)]">.</span>
+              PR<span className="text-cyan-500 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">.</span>
             </span>
           </div>
 
@@ -82,7 +82,7 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[2000] bg-[#4A0707]/95 backdrop-blur-2xl flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
             <button
               onClick={() => setIsMobileMenuOpen(false)}
