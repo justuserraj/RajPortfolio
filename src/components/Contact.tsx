@@ -22,65 +22,63 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <div className="glass-panel p-8 rounded-3xl relative">
-              <AnimatePresence>
-                {isSent && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md rounded-3xl text-center p-8"
-                  >
-                    <CheckCircle2 size={64} className="text-cyan-500 mb-4" />
-                    <h3 className="text-2xl font-bold mb-2">SIGNAL RECEIVED</h3>
-                    <p className="text-gray-400">Your transmission has been successfully delivered to the neural network.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <form className="space-y-6" onSubmit={handleSubmit}>
-                <div>
-                  <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Identification</label>
-                  <input 
-                    required
-                    type="text" 
-                    placeholder="Your Name"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Signal Address</label>
-                  <input 
-                    required
-                    type="email" 
-                    placeholder="email@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Transmission</label>
-                  <textarea 
-                    required
-                    rows={4}
-                    placeholder="Your message..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"
-                  />
-                </div>
-                <button 
-                  type="submit"
-                  className="w-full py-4 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 group overflow-hidden relative"
+          <div className="space-y-8 relative">
+            <AnimatePresence>
+              {isSent && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md rounded-3xl text-center p-8"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    SEND SIGNAL
-                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </span>
-                  <motion.div 
-                    className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                  />
-                </button>
-              </form>
-            </div>
+                  <CheckCircle2 size={64} className="text-cyan-500 mb-4" />
+                  <h3 className="text-2xl font-bold mb-2">SIGNAL RECEIVED</h3>
+                  <p className="text-gray-400">Your transmission has been successfully delivered to the neural network.</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Identification</label>
+                <input 
+                  required
+                  type="text" 
+                  placeholder="Your Name"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Signal Address</label>
+                <input 
+                  required
+                  type="email" 
+                  placeholder="email@example.com"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-mono text-gray-500 uppercase mb-2">Transmission</label>
+                <textarea 
+                  required
+                  rows={4}
+                  placeholder="Your message..."
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"
+                />
+              </div>
+              <button 
+                type="submit"
+                className="w-full py-4 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 group overflow-hidden relative"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  SEND SIGNAL
+                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </span>
+                <motion.div 
+                  className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                />
+              </button>
+            </form>
           </div>
 
           <div className="flex flex-col justify-center gap-6">
