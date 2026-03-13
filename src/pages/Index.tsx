@@ -7,7 +7,7 @@ import Skills from '@/components/Skills';
 import Services from '@/components/Services';
 import Portfolio from '@/components/Portfolio';
 import Programming from '@/components/Programming';
-import Experience from '@/components/Experience';
+import TechStack from '@/components/TechStack';
 import Contact from '@/components/Contact';
 import BackgroundEffects from '@/components/BackgroundEffects';
 import CursorTrail from '@/components/CursorTrail';
@@ -37,8 +37,8 @@ const Index = () => {
         
         <Programming />
         
-        <div id="experience">
-          <Experience />
+        <div id="tech-stack">
+          <TechStack />
         </div>
         
         <Contact />
