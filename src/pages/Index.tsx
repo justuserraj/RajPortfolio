@@ -4,7 +4,6 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Skills from '@/components/Skills';
-import Services from '@/components/Services';
 import Portfolio from '@/components/Portfolio';
 import Programming from '@/components/Programming';
 import TechStack from '@/components/TechStack';
@@ -26,10 +25,6 @@ const Index = () => {
       <div className="relative z-10">
         <Hero />
         <Skills />
-        
-        <div id="services">
-          <Services />
-        </div>
         
         <div id="work">
           <Portfolio />
