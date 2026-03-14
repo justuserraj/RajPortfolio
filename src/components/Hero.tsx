@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, MousePointer2 } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -34,7 +34,7 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('tech-stack')?.scrollIntoView({ behavior: 'smooth' })}
             className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
           >
             <span className="relative z-10 flex items-center gap-2">
