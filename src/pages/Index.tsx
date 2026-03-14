@@ -3,7 +3,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Skills from '@/components/Skills';
 import Programming from '@/components/Programming';
 import TechStack from '@/components/TechStack';
 import Contact from '@/components/Contact';
@@ -23,7 +22,6 @@ const Index = () => {
       
       <div className="relative z-10">
         <Hero />
-        <Skills />
         
         <Programming />
         
